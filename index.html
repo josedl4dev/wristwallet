@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WristWallet</title>
+<meta name="description" content="Your loyalty cards and tickets, with their QR codes and barcodes, on your watch.">
+<link rel="icon" href="icon.png">
+<style>
+  :root { --bg:#f5f7ff; --card:#fff; --ink:#111633; --muted:#5a6182; --accent:#3949ab; --accent-ink:#fff; --line:#dde2f5; --warn:#8a5a00; --warn-bg:#fff6e0; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b0e1c; --card:#141a33; --ink:#e6e9fb; --muted:#a1a8c8; --accent:#8c9eff; --accent-ink:#00218b; --line:#252c4d; --warn:#f3c56b; --warn-bg:#2b2310; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 24px 16px 48px; }
+  header { display:flex; gap:16px; align-items:center; margin: 8px 0 20px; }
+  header img { width:64px; height:64px; }
+  h1 { margin:0; font-size:28px; }
+  .tag { margin:2px 0 0; color:var(--muted); }
+  .lang { margin-left:auto; align-self:flex-start; }
+  select { font:inherit; padding:4px 8px; border-radius:8px; border:1px solid var(--line); background:var(--card); color:var(--ink); }
+  .cta { display:block; text-align:center; background:var(--accent); color:var(--accent-ink); text-decoration:none; font-weight:600; font-size:18px; padding:14px; border-radius:14px; }
+  .small { color:var(--muted); font-size:14px; text-align:center; margin:8px 0 24px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px 18px; margin:14px 0; }
+  h2 { font-size:19px; margin:0 0 8px; }
+  h3 { font-size:16px; margin:14px 0 4px; }
+  ol, ul { margin:0; padding-left:22px; } li { margin:6px 0; }
+  .note { background:var(--warn-bg); color:var(--warn); border-radius:12px; padding:10px 14px; font-size:15px; margin-top:10px; }
+  footer { color:var(--muted); font-size:14px; margin-top:28px; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icon.png" alt="">
+    <div><h1>WristWallet</h1><p class="tag" data-t="tag"></p></div>
+    <div class="lang"><select id="lang" aria-label="Language">
+      <option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="pt">Português</option>
+    </select></div>
+  </header>
+
+  <a class="cta" href="https://github.com/josedl4dev/wristwallet/releases/latest/download/wristwallet.apk" data-t="download"></a>
+  <p class="small"><span data-t="req"></span> · <a href="https://github.com/josedl4dev/wristwallet/releases" data-t="versions"></a></p>
+
+  <section class="card">
+    <h2 data-t="whatH"></h2>
+    <p data-t="what" style="margin:0 0 8px"></p>
+    <ul><li data-t="f1"></li><li data-t="f2"></li><li data-t="f3"></li><li data-t="f4"></li></ul>
+  </section>
+
+  <section class="card">
+    <h2 data-t="installH"></h2>
+    <ol><li data-t="i1"></li><li data-t="i2"></li><li data-t="i3"></li><li data-t="i4"></li></ol>
+    <div class="note" data-t="watches"></div>
+  </section>
+
+  <section class="card" id="blocked">
+    <h2 data-t="blockH"></h2>
+    <p data-t="blockWhy" style="margin:0 0 8px"></p>
+    <h3 data-t="ppH"></h3>
+    <ol><li data-t="pp1"></li><li data-t="pp2"></li><li data-t="pp3"></li></ol>
+    <h3 data-t="ppOffH"></h3>
+    <ol><li data-t="off1"></li><li data-t="off2"></li><li data-t="off3"></li><li data-t="off4"></li></ol>
+    <h3 data-t="samH"></h3>
+    <p data-t="sam" style="margin:0"></p>
+    <p class="small" style="text-align:left;margin:12px 0 0"><span data-t="sig"></span><br><code style="word-break:break-all">94:8B:0C:59:69:EC:6F:04:FC:F3:6C:AC:B6:F1:CC:17:51:ED:6D:49:00:50:29:F8:E9:DA:48:AA:6B:FC:85:E0</code></p>
+  </section>
+
+  <section class="card"><h2 data-t="updH"></h2><p data-t="upd" style="margin:0"></p></section>
+
+  <section class="card"><h2 data-t="privH"></h2><p style="margin:0"><span data-t="priv"></span> <a href="privacy.html" data-t="privLink"></a></p></section>
+
+  <footer><p data-t="legal"></p><p>© 2026 josedl4dev · <a href="mailto:josedl4dev@gmail.com">josedl4dev@gmail.com</a></p></footer>
+</main>
+<script>
+const T = {
+  en: {
+    tag: "Your loyalty cards and tickets, on your watch",
+    download: "Download for Android",
+    req: "Android 11 or later · free",
+    versions: "All versions",
+    whatH: "What it does",
+    what: "WristWallet keeps your loyalty cards, memberships and tickets on your Android phone and puts their codes on your watch, so you can pay, collect points or get in with your wrist.",
+    f1: "Add a card by scanning its code, by picking a screenshot (or sharing it from another app) or by typing it. QR, Aztec, PDF417, Data Matrix, EAN, UPC, Code 128 and more.",
+    f2: "Tickets keep their date, venue, seat and expiry; expired ones move to the end.",
+    f3: "Codes that change with the time (a time template or one-time codes like Google Authenticator) are made by the watch itself, so they work without the phone.",
+    f4: "The watch keeps your cards: they show even when the phone is not around, at full screen brightness.",
+    installH: "Install in 4 steps",
+    i1: "Tap “Download for Android” on your phone and open the file when it finishes.",
+    i2: "If Android asks, allow your browser to install apps, then tap Install.",
+    i3: "Open WristWallet, add your cards, and in Settings turn on “Connect watch”.",
+    i4: "On the watch, install WristWallet from the Zepp app’s store and enter the 6-digit code the phone shows.",
+    watches: "Watches: Amazfit / Zepp OS 3.0 or later. A version for HUAWEI watches is on the way.",
+    blockH: "If Android blocks the install",
+    blockWhy: "WristWallet is not on Google Play, so Android may warn you or stop the install. It is safe to continue: the app only sends your cards to your own watch and nothing to the internet.",
+    ppH: "“Blocked by Play Protect” or “Unsafe app”",
+    pp1: "Tap “More details” (or the small arrow) in the warning.",
+    pp2: "Tap “Install anyway”.",
+    pp3: "If it offers to “Scan app”, let it scan, then tap “Install”.",
+    ppOffH: "If there is no “Install anyway” button",
+    off1: "Open the Play Store, tap your profile picture and choose “Play Protect”.",
+    off2: "Tap the gear at the top right and turn off “Scan apps with Play Protect”.",
+    off3: "Open the downloaded wristwallet.apk again and install it.",
+    off4: "Go back to Play Protect and turn scanning on again.",
+    samH: "Samsung: “blocked for security reasons”",
+    sam: "That is Auto Blocker. Open Settings → Security and privacy → Auto Blocker, turn it off, install WristWallet and turn it back on.",
+    sig: "Genuine copies are signed with this certificate (SHA-256):",
+    updH: "Updates",
+    upd: "Download the new version from this page and install it over the old one: your cards stay. You can also follow the releases with Obtainium.",
+    privH: "Privacy",
+    priv: "Nothing is uploaded: your cards stay on your phone and your paired watch.",
+    privLink: "Privacy policy",
+    legal: "WristWallet is an independent app, not affiliated with or endorsed by Zepp, Amazfit or HUAWEI, nor by the shops whose cards you store."
+  },
+  es: {
+    tag: "Tus tarjetas de fidelización y entradas, en el reloj",
+    download: "Descargar para Android",
+    req: "Android 11 o posterior · gratis",
+    versions: "Todas las versiones",
+    whatH: "Qué hace",
+    what: "WristWallet guarda en tu móvil Android tus tarjetas de fidelización, carnés de socio y entradas, y lleva sus códigos al reloj para pagar, sumar puntos o entrar con la muñeca.",
+    f1: "Añade una tarjeta escaneando su código, eligiendo una captura (o compartiéndola desde otra app) o escribiéndolo. QR, Aztec, PDF417, Data Matrix, EAN, UPC, Code 128 y más.",
+    f2: "Las entradas guardan fecha, lugar, asiento y caducidad; las caducadas pasan al final.",
+    f3: "Los códigos que cambian con la hora (una plantilla con la hora o códigos de un solo uso como Google Authenticator) los genera el propio reloj, así que funcionan sin el móvil.",
+    f4: "El reloj guarda tus tarjetas: se ven aunque el móvil no esté cerca, con el brillo de la pantalla al máximo.",
+    installH: "Instálala en 4 pasos",
+    i1: "Toca «Descargar para Android» en el móvil y abre el archivo cuando termine.",
+    i2: "Si Android lo pide, permite que el navegador instale apps y toca Instalar.",
+    i3: "Abre WristWallet, añade tus tarjetas y en Ajustes activa «Conectar reloj».",
+    i4: "En el reloj, instala WristWallet desde la tienda de la app Zepp e introduce el código de 6 dígitos que muestra el móvil.",
+    watches: "Relojes: Amazfit / Zepp OS 3.0 o posterior. Está en camino una versión para relojes HUAWEI.",
+    blockH: "Si Android bloquea la instalación",
+    blockWhy: "WristWallet no está en Google Play, así que Android puede avisarte o frenar la instalación. Puedes continuar con seguridad: la app solo envía tus tarjetas a tu propio reloj y nada a internet.",
+    ppH: "«Bloqueada por Play Protect» o «App no segura»",
+    pp1: "Toca «Más detalles» (o la flechita) en el aviso.",
+    pp2: "Toca «Instalar de todos modos».",
+    pp3: "Si te ofrece «Analizar app», deja que la analice y luego toca «Instalar».",
+    ppOffH: "Si no aparece «Instalar de todos modos»",
+    off1: "Abre Play Store, toca tu foto de perfil y elige «Play Protect».",
+    off2: "Toca el engranaje de arriba a la derecha y desactiva «Analizar apps con Play Protect».",
+    off3: "Vuelve a abrir el wristwallet.apk descargado e instálalo.",
+    off4: "Vuelve a Play Protect y activa otra vez el análisis.",
+    samH: "Samsung: «bloqueada por motivos de seguridad»",
+    sam: "Es el Bloqueador automático. Abre Ajustes → Seguridad y privacidad → Bloqueador automático, desactívalo, instala WristWallet y vuelve a activarlo.",
+    sig: "Las copias auténticas están firmadas con este certificado (SHA-256):",
+    updH: "Actualizaciones",
+    upd: "Descarga la versión nueva desde esta página e instálala encima de la anterior: tus tarjetas se mantienen. También puedes seguir las versiones con Obtainium.",
+    privH: "Privacidad",
+    priv: "No se sube nada: tus tarjetas se quedan en tu móvil y en tu reloj emparejado.",
+    privLink: "Política de privacidad",
+    legal: "WristWallet es una app independiente, sin relación ni respaldo de Zepp, Amazfit o HUAWEI, ni de las tiendas cuyas tarjetas guardes."
+  },
+  fr: {
+    tag: "Vos cartes de fidélité et billets, sur votre montre",
+    download: "Télécharger pour Android",
+    req: "Android 11 ou plus récent · gratuit",
+    versions: "Toutes les versions",
+    whatH: "Ce qu’elle fait",
+    what: "WristWallet garde sur votre téléphone Android vos cartes de fidélité, cartes de membre et billets, et met leurs codes sur votre montre pour payer, cumuler des points ou entrer d’un geste du poignet.",
+    f1: "Ajoutez une carte en scannant son code, en choisissant une capture (ou en la partageant depuis une autre app) ou en le saisissant. QR, Aztec, PDF417, Data Matrix, EAN, UPC, Code 128 et plus.",
+    f2: "Les billets gardent date, lieu, place et expiration ; les billets expirés passent en fin de liste.",
+    f3: "Les codes qui changent avec l’heure (un modèle avec l’heure ou des codes à usage unique comme Google Authenticator) sont créés par la montre elle-même : ils fonctionnent sans le téléphone.",
+    f4: "La montre garde vos cartes : elles s’affichent même loin du téléphone, à luminosité maximale.",
+    installH: "Installation en 4 étapes",
+    i1: "Touchez « Télécharger pour Android » sur le téléphone et ouvrez le fichier à la fin du téléchargement.",
+    i2: "Si Android le demande, autorisez le navigateur à installer des apps, puis touchez Installer.",
+    i3: "Ouvrez WristWallet, ajoutez vos cartes et, dans Réglages, activez « Connecter la montre ».",
+    i4: "Sur la montre, installez WristWallet depuis la boutique de l’app Zepp et saisissez le code à 6 chiffres affiché sur le téléphone.",
+    watches: "Montres : Amazfit / Zepp OS 3.0 ou plus récent. Une version pour les montres HUAWEI est en préparation.",
+    blockH: "Si Android bloque l’installation",
+    blockWhy: "WristWallet n’est pas sur Google Play : Android peut afficher un avertissement ou bloquer l’installation. Vous pouvez continuer sans risque : l’app envoie seulement vos cartes à votre propre montre, et rien sur Internet.",
+    ppH: "« Bloquée par Play Protect » ou « App dangereuse »",
+    pp1: "Touchez « Plus de détails » (ou la petite flèche) dans l’avertissement.",
+    pp2: "Touchez « Installer quand même ».",
+    pp3: "S’il propose « Analyser l’app », laissez-le faire puis touchez « Installer ».",
+    ppOffH: "S’il n’y a pas de bouton « Installer quand même »",
+    off1: "Ouvrez le Play Store, touchez votre photo de profil et choisissez « Play Protect ».",
+    off2: "Touchez la roue dentée en haut à droite et désactivez « Analyser les applications avec Play Protect ».",
+    off3: "Rouvrez le fichier wristwallet.apk téléchargé et installez-le.",
+    off4: "Revenez à Play Protect et réactivez l’analyse.",
+    samH: "Samsung : « bloquée pour des raisons de sécurité »",
+    sam: "C’est le Bloqueur automatique. Ouvrez Paramètres → Sécurité et confidentialité → Bloqueur automatique, désactivez-le, installez WristWallet puis réactivez-le.",
+    sig: "Les copies authentiques sont signées avec ce certificat (SHA-256) :",
+    updH: "Mises à jour",
+    upd: "Téléchargez la nouvelle version sur cette page et installez-la par-dessus l’ancienne : vos cartes restent. Vous pouvez aussi suivre les versions avec Obtainium.",
+    privH: "Confidentialité",
+    priv: "Rien n’est envoyé sur Internet : vos cartes restent sur votre téléphone et votre montre appairée.",
+    privLink: "Politique de confidentialité",
+    legal: "WristWallet est une app indépendante, sans lien avec Zepp, Amazfit ou HUAWEI, ni avec les magasins dont vous enregistrez les cartes."
+  },
+  pt: {
+    tag: "Os seus cartões de fidelização e bilhetes, no relógio",
+    download: "Transferir para Android",
+    req: "Android 11 ou superior · grátis",
+    versions: "Todas as versões",
+    whatH: "O que faz",
+    what: "O WristWallet guarda no seu telemóvel Android os cartões de fidelização, cartões de sócio e bilhetes, e leva os códigos para o relógio para pagar, juntar pontos ou entrar com o pulso.",
+    f1: "Adicione um cartão lendo o código, escolhendo uma captura de ecrã (ou partilhando-a de outra app) ou escrevendo-o. QR, Aztec, PDF417, Data Matrix, EAN, UPC, Code 128 e mais.",
+    f2: "Os bilhetes guardam data, local, lugar e validade; os expirados passam para o fim.",
+    f3: "Os códigos que mudam com a hora (um modelo com a hora ou códigos de uso único como o Google Authenticator) são gerados pelo próprio relógio, por isso funcionam sem o telemóvel.",
+    f4: "O relógio guarda os cartões: aparecem mesmo longe do telemóvel, com o brilho no máximo.",
+    installH: "Instalar em 4 passos",
+    i1: "Toque em «Transferir para Android» no telemóvel e abra o ficheiro quando terminar.",
+    i2: "Se o Android pedir, permita que o navegador instale apps e toque em Instalar.",
+    i3: "Abra o WristWallet, adicione os cartões e, nas Definições, ative «Ligar relógio».",
+    i4: "No relógio, instale o WristWallet pela loja da app Zepp e introduza o código de 6 dígitos que o telemóvel mostra.",
+    watches: "Relógios: Amazfit / Zepp OS 3.0 ou superior. Está a caminho uma versão para relógios HUAWEI.",
+    blockH: "Se o Android bloquear a instalação",
+    blockWhy: "O WristWallet não está no Google Play, por isso o Android pode avisar ou travar a instalação. Pode continuar em segurança: a app só envia os seus cartões para o seu relógio e nada para a Internet.",
+    ppH: "«Bloqueada pelo Play Protect» ou «App não segura»",
+    pp1: "Toque em «Mais detalhes» (ou na pequena seta) no aviso.",
+    pp2: "Toque em «Instalar mesmo assim».",
+    pp3: "Se oferecer «Analisar app», deixe analisar e depois toque em «Instalar».",
+    ppOffH: "Se não aparecer «Instalar mesmo assim»",
+    off1: "Abra a Play Store, toque na sua foto de perfil e escolha «Play Protect».",
+    off2: "Toque na roda dentada no canto superior direito e desative «Analisar apps com o Play Protect».",
+    off3: "Volte a abrir o wristwallet.apk transferido e instale-o.",
+    off4: "Volte ao Play Protect e ative de novo a análise.",
+    samH: "Samsung: «bloqueada por motivos de segurança»",
+    sam: "É o Bloqueador automático. Abra Definições → Segurança e privacidade → Bloqueador automático, desative-o, instale o WristWallet e volte a ativá-lo.",
+    sig: "As cópias autênticas estão assinadas com este certificado (SHA-256):",
+    updH: "Atualizações",
+    upd: "Transfira a versão nova desta página e instale-a por cima da anterior: os cartões mantêm-se. Também pode seguir as versões com o Obtainium.",
+    privH: "Privacidade",
+    priv: "Nada é enviado para a Internet: os cartões ficam no telemóvel e no relógio emparelhado.",
+    privLink: "Política de privacidade",
+    legal: "O WristWallet é uma app independente, sem ligação à Zepp, Amazfit ou HUAWEI, nem às lojas cujos cartões guarda."
+  }
+};
+const sel = document.getElementById('lang');
+function apply(lang) {
+  const t = T[lang] || T.en;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-t]').forEach((el) => { el.textContent = t[el.dataset.t]; });
+  sel.value = lang;
+}
+let start = (navigator.language || 'en').slice(0, 2);
+try { start = localStorage.getItem('lang') || start; } catch (e) {}
+apply(T[start] ? start : 'en');
+sel.addEventListener('change', () => { apply(sel.value); try { localStorage.setItem('lang', sel.value); } catch (e) {} });
+</script>
+</body>
+</html>
