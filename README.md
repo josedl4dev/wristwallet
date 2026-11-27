@@ -1,6 +1,6 @@
-<img src="icon.png" width="96" alt="WristWallet icon">
+<img src="icon.png" width="96" alt="WristCodes icon">
 
-# WristWallet
+# WristCodes
 
 Your loyalty cards and tickets, with their QR codes and barcodes, on your watch.
 
@@ -11,4 +11,4 @@ Your loyalty cards and tickets, with their QR codes and barcodes, on your watch.
 This repository holds the download page and the signed releases of the phone app. The watch app
 is installed from the Zepp app's store.
 
-WristWallet is an independent app, not affiliated with or endorsed by Zepp, Amazfit or HUAWEI.
+WristCodes is an independent app, not affiliated with or endorsed by Zepp, Amazfit or HUAWEI.
